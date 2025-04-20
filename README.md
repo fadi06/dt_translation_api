@@ -62,6 +62,11 @@ GET /api/translations/{identifier}
 GET /api/translations/export
 ```
 
+### 🔍 Search Translations
+```http
+GET /api/translations/search?query={keyword}
+```
+
 ## 🛠️ Requirements
         Composer
         Docker & Docker Compose
