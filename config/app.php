@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    // API TOKEN
+    'api_token' => 'dt_translation_api',
+
 ];

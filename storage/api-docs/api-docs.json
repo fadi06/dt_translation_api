@@ -1,0 +1,1258 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "DT Translation API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register a new user",
+                "description": "Registers a new user and returns user details along with an authentication token.",
+                "operationId": "8e4e3cb7b46126f4696379d3c7eeb4ad",
+                "requestBody": {
+                    "description": "Registration request payload",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Fawad"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "fawad@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "********"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "********"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User registered successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Fawad"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "format": "email",
+                                                    "example": "fawad@example.com"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-11-05T16:41:33.000000Z"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-11-05T16:41:33.000000Z"
+                                                },
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": "1|****************************"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request - validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation error"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "The email field is required."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User login",
+                "description": "Logs in a user with email and password and returns an auth token.",
+                "operationId": "222b2625838e3c57e017987f73598fda",
+                "requestBody": {
+                    "description": "Login request payload",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "fawad@example1.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "********"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User logged in successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User logged in successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 6
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Fawad"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "format": "email",
+                                                    "example": "fawad@example1.com"
+                                                },
+                                                "email_verified_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": null,
+                                                    "nullable": true
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-10-29T14:54:14.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-10-29T14:54:14.000000Z"
+                                                },
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": "1|****************************"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid email or password",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid email or password"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User logout",
+                "description": "Logs out the authenticated user.",
+                "operationId": "ad65cbbd4e9f201619eae184a5961a98",
+                "responses": {
+                    "200": {
+                        "description": "User logged out successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User logged out successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Auth token missing or invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/translations": {
+            "get": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Translations list",
+                "description": "Translation listing.",
+                "operationId": "03e0745fb3bed90fe04f46a1395fa4c1",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "query",
+                        "description": "Locale to filter translations by",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "en"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Translations retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Translations retrieved successfully."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 5
+                                                            },
+                                                            "key": {
+                                                                "type": "string",
+                                                                "example": "in-quae-amet-sequi-possimus-inventore-expedita"
+                                                            },
+                                                            "content": {
+                                                                "type": "string",
+                                                                "example": "Et voluptatem rerum accusantium quis aut illum ut dolorem."
+                                                            },
+                                                            "locale": {
+                                                                "type": "string",
+                                                                "example": "en"
+                                                            },
+                                                            "tags": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "id": {
+                                                                            "type": "integer",
+                                                                            "example": 1
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string",
+                                                                            "example": "mobile"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "first_page_url": {
+                                                    "type": "string",
+                                                    "example": "http://localhost:6266/api/translations?page=1"
+                                                },
+                                                "last_page": {
+                                                    "type": "integer",
+                                                    "example": 83264
+                                                },
+                                                "last_page_url": {
+                                                    "type": "string",
+                                                    "example": "http://localhost:6266/api/translations?page=83264"
+                                                },
+                                                "next_page_url": {
+                                                    "type": "string",
+                                                    "example": "http://localhost:6266/api/translations?page=2"
+                                                },
+                                                "prev_page_url": {
+                                                    "type": "string",
+                                                    "example": null,
+                                                    "nullable": true
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 166528
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Create a new translation",
+                "description": "Creates a new translation entry with key, locale, content, and tag.",
+                "operationId": "711dfe2c7f0dbd38f67d0f3e7e07f5b5",
+                "requestBody": {
+                    "description": "Translation creation payload",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "key",
+                                    "locale",
+                                    "content",
+                                    "tag"
+                                ],
+                                "properties": {
+                                    "key": {
+                                        "type": "string",
+                                        "example": "mobile button"
+                                    },
+                                    "locale": {
+                                        "type": "string",
+                                        "example": "en"
+                                    },
+                                    "tag": {
+                                        "type": "string",
+                                        "example": "tag 1"
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "example": "this is for testing"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Translation created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Translation created successfully."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 500002
+                                                },
+                                                "key": {
+                                                    "type": "string",
+                                                    "example": "mobile button"
+                                                },
+                                                "locale_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "content": {
+                                                    "type": "string",
+                                                    "example": "this is for testing"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-04-19T16:06:07.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-04-19T16:06:07.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "property": null
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/translations/{id}": {
+            "get": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Get a single translation",
+                "description": "Retrieves a single translation record by its ID.",
+                "operationId": "e23a56179b53c1c1a0fd73509bcef906",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the translation",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 50000
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Translation retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Translation retrieved successfully."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 50000
+                                                },
+                                                "key": {
+                                                    "type": "string",
+                                                    "example": "et-nihil-odit-odio-facilis"
+                                                },
+                                                "locale_id": {
+                                                    "type": "integer",
+                                                    "example": 3
+                                                },
+                                                "content": {
+                                                    "type": "string",
+                                                    "example": "Nostrum illo quo esse et magni rem cupiditate."
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": null,
+                                                    "nullable": true
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": null,
+                                                    "nullable": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Translation not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Translation not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Update an existing translation",
+                "description": "Updates the specified translation entry by ID.",
+                "operationId": "a5cb050be20f56c1ce385df0166adef0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the translation to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 500002
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Translation update payload",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "key",
+                                    "locale",
+                                    "content",
+                                    "tag"
+                                ],
+                                "properties": {
+                                    "key": {
+                                        "type": "string",
+                                        "example": "mobile button"
+                                    },
+                                    "locale": {
+                                        "type": "string",
+                                        "example": "en"
+                                    },
+                                    "tag": {
+                                        "type": "string",
+                                        "example": "tag 1"
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "example": "this is for testing"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Translation updated successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Translation updated successfully."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 500002
+                                                },
+                                                "key": {
+                                                    "type": "string",
+                                                    "example": "mobile button"
+                                                },
+                                                "locale_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "content": {
+                                                    "type": "string",
+                                                    "example": "this is for testing"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-04-19T16:06:07.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-04-19T16:06:07.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "property": null
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Delete a translation",
+                "description": "Deletes the specified translation by ID.",
+                "operationId": "597eb101f75cb9675a1b31ad1e3250a9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the translation to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 500001
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Translation deleted successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Translation deleted successfully."
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": null,
+                                            "nullable": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Translation not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Translation not found."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/translations/export": {
+            "get": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Export translations",
+                "description": "Exports translations based on the given locale and optional tag.",
+                "operationId": "9f227c61c766f0f5cacdb54bab6df4a2",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "query",
+                        "description": "Locale code for translations",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "en"
+                        }
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Optional tag to filter translations",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "mobile"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Translations exported successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Translations exported successfully."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 5
+                                                    },
+                                                    "key": {
+                                                        "type": "string",
+                                                        "example": "in-quae-amet-sequi-possimus-inventore-expedita"
+                                                    },
+                                                    "content": {
+                                                        "type": "string",
+                                                        "example": "Et voluptatem rerum accusantium quis aut illum ut dolorem."
+                                                    },
+                                                    "locale": {
+                                                        "type": "string",
+                                                        "example": "en"
+                                                    },
+                                                    "tags": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "mobile"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/translations/search": {
+            "get": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Search translations",
+                "description": "Searches translations based on the provided query string.",
+                "operationId": "0e8e57c1d0fe6abb8a7320538657df42",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Search keyword to filter translations",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "button"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Translations exported successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Translations exported successfully."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 5
+                                                            },
+                                                            "key": {
+                                                                "type": "string",
+                                                                "example": "save-button"
+                                                            },
+                                                            "content": {
+                                                                "type": "string",
+                                                                "example": "Save"
+                                                            },
+                                                            "locale": {
+                                                                "type": "string",
+                                                                "example": "en"
+                                                            },
+                                                            "tags": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "id": {
+                                                                            "type": "integer",
+                                                                            "example": 1
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string",
+                                                                            "example": "mobile"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "first_page_url": {
+                                                    "type": "string",
+                                                    "example": "http://localhost:8000/api/translations/search?page=1"
+                                                },
+                                                "last_page": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                },
+                                                "last_page_url": {
+                                                    "type": "string",
+                                                    "example": "http://localhost:8000/api/translations/search?page=5"
+                                                },
+                                                "next_page_url": {
+                                                    "type": "string",
+                                                    "example": "http://localhost:8000/api/translations/search?page=2"
+                                                },
+                                                "prev_page_url": {
+                                                    "type": "string",
+                                                    "example": null,
+                                                    "nullable": true
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 100
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Auth"
+        },
+        {
+            "name": "Translations",
+            "description": "Translations"
+        }
+    ]
+}

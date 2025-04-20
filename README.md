@@ -1,61 +1,80 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🈯 Translation API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A powerful and scalable API-driven translation system built with Laravel. Designed to handle large volumes of translations across multiple locales with features like tagging, searching, and exporting for frontend applications such as Vue.js or React.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Key Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Multi-Locale Translation**  
+  Easily manage translations across multiple locales (e.g., `en`, `fr`, `de`) with the flexibility to add new languages anytime.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Tag-Based Organization**  
+  Categorize translations using context-based tags (like `mobile`, `dashboard`, `marketing`) for better filtering and management.
 
-## Learning Laravel
+- **CRUD Operations**  
+  Fully functional endpoints to Create, Read, Update, and Delete translation records.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Search & Filter Support**  
+  Search translations by keys, values, tags, and locales with blazing-fast performance.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Frontend Export (JSON)**  
+  Export translations to JSON files tailored for frontend consumption—ideal for Vue.js or similar frameworks.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **High Performance**  
+  Optimized to handle 100,000+ records with advanced caching, indexed querying, and asynchronous job support.
 
-## Laravel Sponsors
+- **Secure Access**  
+  Token-based authentication using Laravel Sanctum for secure API consumption.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Dockerized Setup**  
+  Comes with Docker configuration for hassle-free local development.
 
-### Premium Partners
+- **Test Coverage**  
+  Comprehensive test suite covering all core functionalities (95%+ coverage).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 📚 API Endpoints Overview
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 📌 Create Translation
+```http
+POST /api/translations
+```
 
-## Code of Conduct
+### ✏️ Update Translation
+```http
+PUT /api/translations/{id}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 🌍 Get Translations by Locale
+```http
+GET /api/translations/{locale}
+```
 
-## Security Vulnerabilities
+### 🔑 Get Translation by Key or ID
+```http
+GET /api/translations/{identifier}
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 📦 Export Translations
+```http
+GET /api/translations/export
+```
 
-## License
+## 🛠️ Requirements
+        Composer
+        Docker & Docker Compose
+## 🧪 Installation Guide
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    1. Clone the Repository
+        a. git clone https://github.com/your-username/translation-api.git
+        b. cd translation-api/.docker
+
+    2. Install Docker
+        To install Docker, please follow the instructions in this [File](./.docker/README.md)
+        Make sure to complete all the steps outlined there.
+
+## ✅ Final Step
+
+    After completing all the steps, your project will be accessible at: [URL](http://localhost:6266). 
